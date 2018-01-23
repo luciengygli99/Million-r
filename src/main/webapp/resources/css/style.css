@@ -1,0 +1,42 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 23.01.2018, 10:34:23
+    Author     : Lucien Gygli
+*/
+
+.contents {
+    text-align: center;
+    margin: 100px;
+}
+
+.contents h1 {
+    font-size: 75px;
+    height: 100px;
+}
+
+.contents p {
+    font-size: 20px;
+}
+
+.contents .button {
+    width: 25%;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    background-color: #101010;
+    border-radius: 5px;
+}
+
+.footerText {
+    margin-left: 10px;
+    color: grey;
+}
