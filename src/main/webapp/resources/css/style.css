@@ -8,6 +8,10 @@ and open the template in the editor.
     Author     : Lucien Gygli
 */
 
+.margin {
+    margin: 10px;
+}
+
 .contents {
     text-align: center;
     margin: 100px;

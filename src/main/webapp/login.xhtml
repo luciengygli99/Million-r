@@ -7,11 +7,45 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
-    <ui:composition template="WEB-INF/templates/layout.xhtml">
+    <ui:composition template="/WEB-INF/templates/layout.xhtml">
+        <ui:define name="content">
+            <div class="row" id="pwd-container">
+                <div class="col-md-3"></div>
 
-        <div>TODO write content</div>
+                <div class="col-md-5">
+                    <section class="login-form">
+                        <h:form id="login">
+                            <h1 class="margin">LogIn</h1>
+                            <h:panelGroup id="messages" rendered="#{not empty facesContext.messageList}" layout="block" class="alert alert-danger" a:role="alert"> 
+                                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                <span class="sr-only">Message:</span>
+                                <h:messages/>
+                            </h:panelGroup>
+
+                            <h:inputText id="inputUsername" value="#{loginController.username}" class="form-control input-lg margin" binding="#{inputUsername}" a:placeholder="Username" a:required="required" a:autofocus="autofocus"/>
+                            <h:inputSecret id="inputPassword" value="#{loginController.password}" class="form-control input-lg margin" binding="#{inputPassword}" a:autocomplete="off" a:required="required" a:placeholder="Password"/>
+                            <h:commandButton id="signin" class="btn btn-lg btn-primary btn-block margin" action="#{loginController.doLogin()}" value="Sign in"></h:commandButton>
+                        </h:form>
+                        </section>
+                    <hr/>
+                            <div>
+                                <small>Try username <b>admin</b> with password <b>admin</b> (<a href="javascript:fillLogin('admin','admin')">do it</a>)</small>
+                                <script type="text/javascript">
+                                    function fillLogin(username, password) {
+                                        document.getElementById("#{inputUsername.clientId}").value = username;
+                                        document.getElementById("#{inputPassword.clientId}").value = password;
+                                    }
+                                </script>
+                            </div>
+                </div>
+                <div class="col-md-5"></div>
+
+
+            </div>
+        </ui:define>    
     </ui:composition>
 </html>
 

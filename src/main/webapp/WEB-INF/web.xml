@@ -23,4 +23,12 @@
     <welcome-file-list>
         <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
+    <filter>
+        <filter-name>LoginFilter</filter-name>
+        <filter-class>ch.bbbaden.luciengygli_lb_m151_v232.filter.LoginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/secured/*</url-pattern>
+    </filter-mapping>
 </web-app>
