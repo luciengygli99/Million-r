@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/WEB-INF/templates/layout.xhtml">
+        <ui:define name="content">
+            <h:outputText value="#{bundle.ListFrageTitle}"></h:outputText>
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListFrageEmpty}" rendered="#{frageController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{frageController.items.rowCount > 0}">
+                    <h:outputText value="#{frageController.pagination.pageFirstItem + 1}..#{frageController.pagination.pageLastItem + 1}/#{frageController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{frageController.previous}" value="#{bundle.Previous} #{frageController.pagination.pageSize}" rendered="#{frageController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{frageController.next}" value="#{bundle.Next} #{frageController.pagination.pageSize}" rendered="#{frageController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{frageController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFrageTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFrageTitle_frage}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.frage}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFrageTitle_kategorieId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.kategorieId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFrageTitle_falscheA1}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.falscheA1}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFrageTitle_falscheA2}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.falscheA2}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFrageTitle_falscheA3}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.falscheA3}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFrageTitle_richtigeA}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.richtigeA}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{frageController.prepareView}" value="#{bundle.ListFrageViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{frageController.prepareEdit}" value="#{bundle.ListFrageEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{frageController.destroy}" value="#{bundle.ListFrageDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{frageController.prepareCreate}" value="#{bundle.ListFrageCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListFrageIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

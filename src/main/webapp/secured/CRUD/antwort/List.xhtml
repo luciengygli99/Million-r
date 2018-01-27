@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/WEB-INF/templates/layout.xhtml">
+        <ui:define name="content">
+            <h:outputText value="#{bundle.ListAntwortTitle}"></h:outputText>
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListAntwortEmpty}" rendered="#{antwortController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{antwortController.items.rowCount > 0}">
+                    <h:outputText value="#{antwortController.pagination.pageFirstItem + 1}..#{antwortController.pagination.pageLastItem + 1}/#{antwortController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{antwortController.previous}" value="#{bundle.Previous} #{antwortController.pagination.pageSize}" rendered="#{antwortController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{antwortController.next}" value="#{bundle.Next} #{antwortController.pagination.pageSize}" rendered="#{antwortController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{antwortController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAntwortTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAntwortTitle_textA}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.textA}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAntwortTitle_falsch}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.falsch}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAntwortTitle_richtig}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.richtig}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{antwortController.prepareView}" value="#{bundle.ListAntwortViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{antwortController.prepareEdit}" value="#{bundle.ListAntwortEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{antwortController.destroy}" value="#{bundle.ListAntwortDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{antwortController.prepareCreate}" value="#{bundle.ListAntwortCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListAntwortIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

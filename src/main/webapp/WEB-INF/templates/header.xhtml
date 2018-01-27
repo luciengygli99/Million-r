@@ -11,13 +11,28 @@ and open the template in the editor.
 
 
     <ui:composition>
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="login.xhtml">Admin</a></li>
-                </ul>
-            </div>
-        </nav>
+        <h:form>
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <h:panelGroup rendered="#{loginController.loggedIn}">
+                        <ul class="nav navbar-nav">
+                            <li><a href="/LucienGygli_LB_M151_V232/secured/index.xhtml">Home</a></li>
+                            <li><a href="/LucienGygli_LB_M151_V232/secured/CRUD/kategorie/List.xhtml">Kategorien</a></li>
+                            <li><a href="#">Highscores</a></li>
+                        </ul>
+                    </h:panelGroup>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <h:panelGroup rendered="#{loginController.loggedIn}">
+                            <li><h:commandLink action="#{loginController.logout()}">Logout</h:commandLink></li>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{!loginController.loggedIn}">
+                            <li><a href="login.xhtml">Admin</a></li>
+                        </h:panelGroup>
+                    </ul>
+                </div>
+            </nav>
+        </h:form>
     </ui:composition>
 
 </html>

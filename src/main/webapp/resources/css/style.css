@@ -44,3 +44,15 @@ and open the template in the editor.
     margin-left: 10px;
     color: grey;
 }
+
+table {
+    width: 60%;
+    margin: auto;
+    margin-top: 25px;
+}
+
+th {
+    background-color: #101010;
+    color: white;
+    text-align: center;
+}

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/WEB-INF/templates/layout.xhtml">
+        <ui:define name="content">
+            <h:outputText value="#{bundle.EditFrageTitle}"></h:outputText>
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditFrageLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{frageController.selected.id}" title="#{bundle.EditFrageTitle_id}" required="true" requiredMessage="#{bundle.EditFrageRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditFrageLabel_frage}" for="frage" />
+                    <h:inputText id="frage" value="#{frageController.selected.frage}" title="#{bundle.EditFrageTitle_frage}" required="true" requiredMessage="#{bundle.EditFrageRequiredMessage_frage}"/>
+                    <h:outputLabel value="#{bundle.EditFrageLabel_kategorieId}" for="kategorieId" />
+                    <h:selectOneMenu id="kategorieId" value="#{frageController.selected.kategorieId}" title="#{bundle.EditFrageTitle_kategorieId}" required="true" requiredMessage="#{bundle.EditFrageRequiredMessage_kategorieId}">
+                        <f:selectItems value="#{kategorieController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditFrageLabel_falscheA1}" for="falscheA1" />
+                    <h:selectOneMenu id="falscheA1" value="#{frageController.selected.falscheA1}" title="#{bundle.EditFrageTitle_falscheA1}" required="true" requiredMessage="#{bundle.EditFrageRequiredMessage_falscheA1}">
+                        <f:selectItems value="#{antwortController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditFrageLabel_falscheA2}" for="falscheA2" />
+                    <h:selectOneMenu id="falscheA2" value="#{frageController.selected.falscheA2}" title="#{bundle.EditFrageTitle_falscheA2}" required="true" requiredMessage="#{bundle.EditFrageRequiredMessage_falscheA2}">
+                        <f:selectItems value="#{antwortController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditFrageLabel_falscheA3}" for="falscheA3" />
+                    <h:selectOneMenu id="falscheA3" value="#{frageController.selected.falscheA3}" title="#{bundle.EditFrageTitle_falscheA3}" required="true" requiredMessage="#{bundle.EditFrageRequiredMessage_falscheA3}">
+                        <f:selectItems value="#{antwortController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditFrageLabel_richtigeA}" for="richtigeA" />
+                    <h:selectOneMenu id="richtigeA" value="#{frageController.selected.richtigeA}" title="#{bundle.EditFrageTitle_richtigeA}" required="true" requiredMessage="#{bundle.EditFrageRequiredMessage_richtigeA}">
+                        <f:selectItems value="#{antwortController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{frageController.update}" value="#{bundle.EditFrageSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditFrageViewLink}"/>
+                <br />
+                <h:commandLink action="#{frageController.prepareList}" value="#{bundle.EditFrageShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditFrageIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -5,9 +5,14 @@
  */
 package ch.bbbaden.luciengygli_lb_m151_v232.controller;
 
+import ch.bbbaden.luciengygli_lb_m151_v232.entity.User;
+import ch.bbbaden.luciengygli_lb_m151_v232.facade.UserFacade;
 import java.io.Serializable;
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -17,24 +22,30 @@ import javax.inject.Named;
 @SessionScoped
 public class LoginController implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     private String username = "";
     private String password = "";
-    private boolean loggedIn = false;
+
+    private User u;
+    @EJB
+    private UserFacade uf;
 
     public String doLogin() {
+        u = uf.checkLogin(username, password);
 
-        if (username.equals("admin") && password.equals("admin")) {
-            loggedIn = true;
-            return "secured/index.xhtml";
+        if (u != null) {
+            return "secured/index.xhtml?faces-redirect=true";
         } else {
-            loggedIn = false;
             return "index.xhtml";
         }
     }
 
     public String logout() {
-        loggedIn = false;
-        return "index.xhtml";
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        session.invalidate();
+        u = null;
+        return "/index?faces-redirect=true";
     }
 
     public String getUsername() {
@@ -54,7 +65,7 @@ public class LoginController implements Serializable {
     }
 
     public boolean isLoggedIn() {
-        return loggedIn;
+        return u != null;
     }
 
 }

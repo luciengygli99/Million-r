@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/WEB-INF/templates/layout.xhtml">
+        <ui:define name="content">
+            <h1 value="#{bundle.ViewKategorieTitle}"></h1>
+            <h:outputText value="#{bundle.ViewKategorieTitle}"></h:outputText>
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewKategorieLabel_id}"/>
+                    <h:outputText value="#{kategorieController.selected.id}" title="#{bundle.ViewKategorieTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewKategorieLabel_nameK}"/>
+                    <h:outputText value="#{kategorieController.selected.nameK}" title="#{bundle.ViewKategorieTitle_nameK}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{kategorieController.destroyAndView}" value="#{bundle.ViewKategorieDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewKategorieEditLink}"/>
+                <br />
+                <h:commandLink action="#{kategorieController.prepareCreate}" value="#{bundle.ViewKategorieCreateLink}" />
+                <br />
+                <h:commandLink action="#{kategorieController.prepareList}" value="#{bundle.ViewKategorieShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewKategorieIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

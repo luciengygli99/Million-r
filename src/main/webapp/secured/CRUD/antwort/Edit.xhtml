@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/WEB-INF/templates/layout.xhtml">
+        <ui:define name="content">
+            <h:outputText value="#{bundle.EditAntwortTitle}"></h:outputText>
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditAntwortLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{antwortController.selected.id}" title="#{bundle.EditAntwortTitle_id}" required="true" requiredMessage="#{bundle.EditAntwortRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditAntwortLabel_textA}" for="textA" />
+                    <h:inputText id="textA" value="#{antwortController.selected.textA}" title="#{bundle.EditAntwortTitle_textA}" required="true" requiredMessage="#{bundle.EditAntwortRequiredMessage_textA}"/>
+                    <h:outputLabel value="#{bundle.EditAntwortLabel_falsch}" for="falsch" />
+                    <h:inputText id="falsch" value="#{antwortController.selected.falsch}" title="#{bundle.EditAntwortTitle_falsch}" required="true" requiredMessage="#{bundle.EditAntwortRequiredMessage_falsch}"/>
+                    <h:outputLabel value="#{bundle.EditAntwortLabel_richtig}" for="richtig" />
+                    <h:inputText id="richtig" value="#{antwortController.selected.richtig}" title="#{bundle.EditAntwortTitle_richtig}" required="true" requiredMessage="#{bundle.EditAntwortRequiredMessage_richtig}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{antwortController.update}" value="#{bundle.EditAntwortSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditAntwortViewLink}"/>
+                <br />
+                <h:commandLink action="#{antwortController.prepareList}" value="#{bundle.EditAntwortShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditAntwortIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

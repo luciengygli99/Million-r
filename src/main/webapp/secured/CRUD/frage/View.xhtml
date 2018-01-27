@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/WEB-INF/templates/layout.xhtml">
+        <ui:define name="content">
+            <h:outputText value="#{bundle.ViewFrageTitle}"></h:outputText>
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewFrageLabel_id}"/>
+                    <h:outputText value="#{frageController.selected.id}" title="#{bundle.ViewFrageTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewFrageLabel_frage}"/>
+                    <h:outputText value="#{frageController.selected.frage}" title="#{bundle.ViewFrageTitle_frage}"/>
+                    <h:outputText value="#{bundle.ViewFrageLabel_kategorieId}"/>
+                    <h:outputText value="#{frageController.selected.kategorieId}" title="#{bundle.ViewFrageTitle_kategorieId}"/>
+                    <h:outputText value="#{bundle.ViewFrageLabel_falscheA1}"/>
+                    <h:outputText value="#{frageController.selected.falscheA1}" title="#{bundle.ViewFrageTitle_falscheA1}"/>
+                    <h:outputText value="#{bundle.ViewFrageLabel_falscheA2}"/>
+                    <h:outputText value="#{frageController.selected.falscheA2}" title="#{bundle.ViewFrageTitle_falscheA2}"/>
+                    <h:outputText value="#{bundle.ViewFrageLabel_falscheA3}"/>
+                    <h:outputText value="#{frageController.selected.falscheA3}" title="#{bundle.ViewFrageTitle_falscheA3}"/>
+                    <h:outputText value="#{bundle.ViewFrageLabel_richtigeA}"/>
+                    <h:outputText value="#{frageController.selected.richtigeA}" title="#{bundle.ViewFrageTitle_richtigeA}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{frageController.destroyAndView}" value="#{bundle.ViewFrageDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewFrageEditLink}"/>
+                <br />
+                <h:commandLink action="#{frageController.prepareCreate}" value="#{bundle.ViewFrageCreateLink}" />
+                <br />
+                <h:commandLink action="#{frageController.prepareList}" value="#{bundle.ViewFrageShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewFrageIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
