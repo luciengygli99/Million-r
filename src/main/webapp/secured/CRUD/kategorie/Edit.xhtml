@@ -7,26 +7,21 @@
 
     <ui:composition template="/WEB-INF/templates/layout.xhtml">
         <ui:define name="content">
-            <h:outputText value="#{bundle.EditKategorieTitle}"></h:outputText>
+            <h1>Kategorie bearbeiten</h1>
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditKategorieLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{kategorieController.selected.id}" title="#{bundle.EditKategorieTitle_id}" required="true" requiredMessage="#{bundle.EditKategorieRequiredMessage_id}"/>
+                <h:panelGrid>
                     <h:outputLabel value="#{bundle.EditKategorieLabel_nameK}" for="nameK" />
-                    <h:inputText id="nameK" value="#{kategorieController.selected.nameK}" title="#{bundle.EditKategorieTitle_nameK}" required="true" requiredMessage="#{bundle.EditKategorieRequiredMessage_nameK}"/>
+                    <h:inputText id="nameK" value="#{kategorieController.selected.nameK}" title="#{bundle.EditKategorieTitle_nameK}" required="true" requiredMessage="#{bundle.EditKategorieRequiredMessage_nameK}" class="form-control "/>
                 </h:panelGrid>
-                <h:commandLink action="#{kategorieController.update}" value="#{bundle.EditKategorieSaveLink}"/>
+                <br />
+                <h:commandButton action="#{kategorieController.update}" value="Speichern" class="btn-primary btn btn-lg button"/>
                 <br />
                 <br />
-                <h:link outcome="View" value="#{bundle.EditKategorieViewLink}"/>
+                <h:commandButton immediate="true" action="#{kategorieController.prepareList}" value="Abbrechen" class="btn-primary btn btn-lg button"/>
                 <br />
-                <h:commandLink action="#{kategorieController.prepareList}" value="#{bundle.EditKategorieShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditKategorieIndexLink}" />
             </h:form>
         </ui:define>
     </ui:composition>

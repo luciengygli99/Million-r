@@ -7,30 +7,26 @@
 
     <ui:composition template="/WEB-INF/templates/layout.xhtml">
         <ui:define name="content">
-            <h1 value="#{bundle.ViewKategorieTitle}"></h1>
-            <h:outputText value="#{bundle.ViewKategorieTitle}"></h:outputText>
+            <h1>#{kategorieController.selected.nameK}</h1>
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
+                <h:panelGrid columns="2" class="table table-bordered" style="border:solid 1px">
                     <h:outputText value="#{bundle.ViewKategorieLabel_id}"/>
                     <h:outputText value="#{kategorieController.selected.id}" title="#{bundle.ViewKategorieTitle_id}"/>
                     <h:outputText value="#{bundle.ViewKategorieLabel_nameK}"/>
                     <h:outputText value="#{kategorieController.selected.nameK}" title="#{bundle.ViewKategorieTitle_nameK}"/>
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{kategorieController.destroyAndView}" value="#{bundle.ViewKategorieDestroyLink}"/>
+                <h:commandButton action="#{kategorieController.destroyAndView}" value="Löschen" class="btn-primary btn btn-lg button"/>
                 <br />
                 <br />
-                <h:link outcome="Edit" value="#{bundle.ViewKategorieEditLink}"/>
-                <br />
-                <h:commandLink action="#{kategorieController.prepareCreate}" value="#{bundle.ViewKategorieCreateLink}" />
-                <br />
-                <h:commandLink action="#{kategorieController.prepareList}" value="#{bundle.ViewKategorieShowAllLink}"/>
+                <h:commandButton action="Edit" value="Bearbeiten" class="btn-primary btn btn-lg button"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.ViewKategorieIndexLink}"/>
+                <h:commandButton action="#{kategorieController.prepareList}" value="Abbrechen" class="btn-primary btn btn-lg button"/>
+                <br />
 
             </h:form>
         </ui:define>

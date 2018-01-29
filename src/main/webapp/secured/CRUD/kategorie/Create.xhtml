@@ -14,13 +14,13 @@
             <h:form>
                 <h:panelGrid>
                     <h:outputLabel value="#{bundle.CreateKategorieLabel_nameK}" for="nameK" />
-                    <h:inputText id="nameK" value="#{kategorieController.selected.nameK}" title="#{bundle.CreateKategorieTitle_nameK}" required="true" requiredMessage="#{bundle.CreateKategorieRequiredMessage_nameK}"/>
+                    <h:inputText id="nameK" value="#{kategorieController.selected.nameK}" title="#{bundle.CreateKategorieTitle_nameK}" required="true" requiredMessage="#{bundle.CreateKategorieRequiredMessage_nameK}" class="form-control "/>
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{kategorieController.create}" value="Speichern" />
+                <h:commandButton action="#{kategorieController.create}" value="Speichern" class="btn-primary btn btn-lg button"/>
                 <br />
                 <br />
-                <h:commandLink action="#{kategorieController.prepareList}" value="#{bundle.CreateKategorieShowAllLink}" immediate="true"/>
+                <h:commandButton immediate="true" action="#{kategorieController.prepareList}" value="Abbrechen" class="btn-primary btn btn-lg button" />
             </h:form>
         </ui:define>
     </ui:composition>

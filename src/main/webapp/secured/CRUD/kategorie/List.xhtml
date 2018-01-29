@@ -15,7 +15,7 @@
                 <h:panelGroup rendered="#{kategorieController.items.rowCount > 0}">
                     <h:commandLink action="#{kategorieController.previous}" value="#{bundle.Previous} #{kategorieController.pagination.pageSize}" rendered="#{kategorieController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{kategorieController.next}" value="#{bundle.Next} #{kategorieController.pagination.pageSize}" rendered="#{kategorieController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{kategorieController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px" class="table table-bordered">
+                    <h:dataTable value="#{kategorieController.items}" var="item" border="0" cellpadding="0" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px" class="table table-bordered">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListKategorieTitle_id}"/>
@@ -32,16 +32,22 @@
                             <f:facet name="header">
                                 <h:outputText value="Bearbeitung"/>
                             </f:facet>
-                            <h:commandLink action="#{kategorieController.prepareView}" value="#{bundle.ListKategorieViewLink}"/>
+                            <h:commandLink action="#{kategorieController.prepareView}" value="Anzeigen"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{kategorieController.prepareEdit}" value="#{bundle.ListKategorieEditLink}"/>
+                            <h:commandLink action="#{kategorieController.prepareEdit}" value="Bearbeiten"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{kategorieController.destroy}" value="#{bundle.ListKategorieDestroyLink}"/>
+                            <h:commandLink action="#{kategorieController.destroy}" value="Löschen"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Fragen"/>
+                            </f:facet>
+                            <h:commandLink action="/secured/CRUD/frage/List.xhtml" value="Fragen anzeigen"/>
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>
                 <br />
-                <h:commandLink action="#{kategorieController.prepareCreate}" value="#{bundle.ListKategorieCreateLink}"/>
+                <h:commandButton action="#{kategorieController.prepareCreate}" value="Neue Kategorie" class="btn-primary btn btn-lg button"/>
             </h:form>
         </ui:define>
     </ui:composition>

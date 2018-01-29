@@ -39,6 +39,7 @@ public class UserFacade extends AbstractFacade<User> {
         try {
             u = (User) q.getSingleResult();
         } catch (Exception ex) {
+            System.out.println(ex);
             u = null;
         }
         return u;
