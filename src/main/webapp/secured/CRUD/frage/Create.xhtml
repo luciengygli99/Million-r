@@ -7,45 +7,44 @@
 
     <ui:composition template="/WEB-INF/templates/layout.xhtml">
         <ui:define name="content">
-            <h:outputText value="#{bundle.CreateFrageTitle}"></h:outputText>
+            <h1>Neue Frage</h1>
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateFrageLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{frageController.selected.id}" title="#{bundle.CreateFrageTitle_id}" required="true" requiredMessage="#{bundle.CreateFrageRequiredMessage_id}"/>
-                    <h:outputLabel value="#{bundle.CreateFrageLabel_frage}" for="frage" />
-                    <h:inputText id="frage" value="#{frageController.selected.frage}" title="#{bundle.CreateFrageTitle_frage}" required="true" requiredMessage="#{bundle.CreateFrageRequiredMessage_frage}"/>
-                    <h:outputLabel value="#{bundle.CreateFrageLabel_kategorieId}" for="kategorieId" />
-                    <h:selectOneMenu id="kategorieId" value="#{frageController.selected.kategorieId}" title="#{bundle.CreateFrageTitle_kategorieId}" required="true" requiredMessage="#{bundle.CreateFrageRequiredMessage_kategorieId}">
+                    <h:outputLabel value="Frage" for="frage" />
+                    <h:inputText id="frage" value="#{frageController.selected.frage}" title="#{bundle.CreateFrageTitle_frage}" required="true" requiredMessage="Frage ist benötigt" class="form-control "/>
+                    <h:outputLabel value="Kategorie" for="kategorieId" />
+                    <h:selectOneMenu id="kategorieId" value="#{frageController.selected.kategorieId}" title="#{bundle.CreateFrageTitle_kategorieId}" required="true" requiredMessage="Kategorie ist benötigt" class="form-control">
                         <f:selectItems value="#{kategorieController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreateFrageLabel_falscheA1}" for="falscheA1" />
-                    <h:selectOneMenu id="falscheA1" value="#{frageController.selected.falscheA1}" title="#{bundle.CreateFrageTitle_falscheA1}" required="true" requiredMessage="#{bundle.CreateFrageRequiredMessage_falscheA1}">
+                    <h:outputLabel value="Falsche Antwort 1" for="falscheA1" />
+                    <h:selectOneMenu id="falscheA1" value="#{frageController.selected.falscheA1}" title="#{bundle.CreateFrageTitle_falscheA1}" required="true" requiredMessage="Falsche Antwort 1 ist benötigt" class="form-control">
                         <f:selectItems value="#{antwortController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreateFrageLabel_falscheA2}" for="falscheA2" />
-                    <h:selectOneMenu id="falscheA2" value="#{frageController.selected.falscheA2}" title="#{bundle.CreateFrageTitle_falscheA2}" required="true" requiredMessage="#{bundle.CreateFrageRequiredMessage_falscheA2}">
+                    <h:outputLabel value="Falsche Antwort 2" for="falscheA2" />
+                    <h:selectOneMenu id="falscheA2" value="#{frageController.selected.falscheA2}" title="#{bundle.CreateFrageTitle_falscheA2}" required="true" requiredMessage="Falsche Antwort 2 ist benötigt" class="form-control">
                         <f:selectItems value="#{antwortController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreateFrageLabel_falscheA3}" for="falscheA3" />
-                    <h:selectOneMenu id="falscheA3" value="#{frageController.selected.falscheA3}" title="#{bundle.CreateFrageTitle_falscheA3}" required="true" requiredMessage="#{bundle.CreateFrageRequiredMessage_falscheA3}">
+                    <h:outputLabel value="Falsche Antwort 3" for="falscheA3" />
+                    <h:selectOneMenu id="falscheA3" value="#{frageController.selected.falscheA3}" title="#{bundle.CreateFrageTitle_falscheA3}" required="true" requiredMessage="Falsche Antwort 3 ist benötigt" class="form-control">
                         <f:selectItems value="#{antwortController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreateFrageLabel_richtigeA}" for="richtigeA" />
-                    <h:selectOneMenu id="richtigeA" value="#{frageController.selected.richtigeA}" title="#{bundle.CreateFrageTitle_richtigeA}" required="true" requiredMessage="#{bundle.CreateFrageRequiredMessage_richtigeA}">
+                    <h:outputLabel value="Richtige Antwort" for="richtigeA" />
+                    <h:selectOneMenu id="richtigeA" value="#{frageController.selected.richtigeA}" title="#{bundle.CreateFrageTitle_richtigeA}" required="true" requiredMessage="Richtige Antwort ist benötigt" class="form-control">
                         <f:selectItems value="#{antwortController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{frageController.create}" value="#{bundle.CreateFrageSaveLink}" />
+                <h:commandButton action="#{frageController.create}" value="Speichern" class="btn-primary btn btn-lg button"/>
                 <br />
                 <br />
-                <h:commandLink action="#{frageController.prepareList}" value="#{bundle.CreateFrageShowAllLink}" immediate="true"/>
+                <h:commandButton immediate="true" action="/secured/CRUD/antwort/Create.xhtml" value="Neue Antwort erstellen" class="btn-primary btn btn-lg button" />
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.CreateFrageIndexLink}"/>
+                <h:commandButton immediate="true" action="#{frageController.prepareList}" value="Abbrechen" class="btn-primary btn btn-lg button" />
+
             </h:form>
         </ui:define>
     </ui:composition>

@@ -7,34 +7,32 @@
 
     <ui:composition template="/WEB-INF/templates/layout.xhtml">
         <ui:define name="content">
-            <h:outputText value="#{bundle.EditFrageTitle}"></h:outputText>
+            <h1>Frage bearbeiten</h1>
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditFrageLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{frageController.selected.id}" title="#{bundle.EditFrageTitle_id}" required="true" requiredMessage="#{bundle.EditFrageRequiredMessage_id}"/>
-                    <h:outputLabel value="#{bundle.EditFrageLabel_frage}" for="frage" />
-                    <h:inputText id="frage" value="#{frageController.selected.frage}" title="#{bundle.EditFrageTitle_frage}" required="true" requiredMessage="#{bundle.EditFrageRequiredMessage_frage}"/>
-                    <h:outputLabel value="#{bundle.EditFrageLabel_kategorieId}" for="kategorieId" />
-                    <h:selectOneMenu id="kategorieId" value="#{frageController.selected.kategorieId}" title="#{bundle.EditFrageTitle_kategorieId}" required="true" requiredMessage="#{bundle.EditFrageRequiredMessage_kategorieId}">
+                    <h:outputLabel value="Frage" for="frage" />
+                    <h:inputText id="frage" value="#{frageController.selected.frage}" title="#{bundle.EditFrageTitle_frage}" required="true" requiredMessage="Frage ist benötigt"/>
+                    <h:outputLabel value="Kategorie" for="kategorieId" />
+                    <h:selectOneMenu id="kategorieId" value="#{frageController.selected.kategorieId}" title="#{bundle.EditFrageTitle_kategorieId}" required="true" requiredMessage="Kategorie ist benötigt">
                         <f:selectItems value="#{kategorieController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.EditFrageLabel_falscheA1}" for="falscheA1" />
-                    <h:selectOneMenu id="falscheA1" value="#{frageController.selected.falscheA1}" title="#{bundle.EditFrageTitle_falscheA1}" required="true" requiredMessage="#{bundle.EditFrageRequiredMessage_falscheA1}">
+                    <h:outputLabel value="Falsche Antwort 1" for="falscheA1" />
+                    <h:selectOneMenu id="falscheA1" value="#{frageController.selected.falscheA1}" title="#{bundle.EditFrageTitle_falscheA1}" required="true" requiredMessage="Falsche Antwort 1 ist benötigt">
                         <f:selectItems value="#{antwortController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.EditFrageLabel_falscheA2}" for="falscheA2" />
-                    <h:selectOneMenu id="falscheA2" value="#{frageController.selected.falscheA2}" title="#{bundle.EditFrageTitle_falscheA2}" required="true" requiredMessage="#{bundle.EditFrageRequiredMessage_falscheA2}">
+                    <h:outputLabel value="Falsche Antwort 2" for="falscheA2" />
+                    <h:selectOneMenu id="falscheA2" value="#{frageController.selected.falscheA2}" title="#{bundle.EditFrageTitle_falscheA2}" required="true" requiredMessage="Falsche Antwort 2 ist benötigt">
                         <f:selectItems value="#{antwortController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.EditFrageLabel_falscheA3}" for="falscheA3" />
-                    <h:selectOneMenu id="falscheA3" value="#{frageController.selected.falscheA3}" title="#{bundle.EditFrageTitle_falscheA3}" required="true" requiredMessage="#{bundle.EditFrageRequiredMessage_falscheA3}">
+                    <h:outputLabel value="Falsche Antwort 3" for="falscheA3" />
+                    <h:selectOneMenu id="falscheA3" value="#{frageController.selected.falscheA3}" title="#{bundle.EditFrageTitle_falscheA3}" required="true" requiredMessage="Falsche Antwort 3 ist benötigt">
                         <f:selectItems value="#{antwortController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.EditFrageLabel_richtigeA}" for="richtigeA" />
-                    <h:selectOneMenu id="richtigeA" value="#{frageController.selected.richtigeA}" title="#{bundle.EditFrageTitle_richtigeA}" required="true" requiredMessage="#{bundle.EditFrageRequiredMessage_richtigeA}">
+                    <h:outputLabel value="Richtige Antwort" for="richtigeA" />
+                    <h:selectOneMenu id="richtigeA" value="#{frageController.selected.richtigeA}" title="#{bundle.EditFrageTitle_richtigeA}" required="true" requiredMessage="Richtige Antwort ist benötigt">
                         <f:selectItems value="#{antwortController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
                 </h:panelGrid>

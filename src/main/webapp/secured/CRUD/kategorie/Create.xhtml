@@ -13,8 +13,8 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid>
-                    <h:outputLabel value="#{bundle.CreateKategorieLabel_nameK}" for="nameK" />
-                    <h:inputText id="nameK" value="#{kategorieController.selected.nameK}" title="#{bundle.CreateKategorieTitle_nameK}" required="true" requiredMessage="#{bundle.CreateKategorieRequiredMessage_nameK}" class="form-control "/>
+                    <h:outputLabel value="Name" for="nameK" />
+                    <h:inputText id="nameK" value="#{kategorieController.selected.nameK}" title="#{bundle.CreateKategorieTitle_nameK}" required="true" requiredMessage="Name ist benötigt" class="form-control "/>
                 </h:panelGrid>
                 <br />
                 <h:commandButton action="#{kategorieController.create}" value="Speichern" class="btn-primary btn btn-lg button"/>

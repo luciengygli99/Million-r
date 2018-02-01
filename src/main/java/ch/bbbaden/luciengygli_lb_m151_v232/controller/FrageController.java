@@ -3,9 +3,11 @@ package ch.bbbaden.luciengygli_lb_m151_v232.controller;
 import ch.bbbaden.luciengygli_lb_m151_v232.entity.Frage;
 import ch.bbbaden.luciengygli_lb_m151_v232.controller.util.JsfUtil;
 import ch.bbbaden.luciengygli_lb_m151_v232.controller.util.PaginationHelper;
+import ch.bbbaden.luciengygli_lb_m151_v232.entity.Kategorie;
 import ch.bbbaden.luciengygli_lb_m151_v232.facade.FrageFacade;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -28,8 +30,17 @@ public class FrageController implements Serializable {
     private ch.bbbaden.luciengygli_lb_m151_v232.facade.FrageFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    private Kategorie kat;
+    private List<Frage> list;
 
     public FrageController() {
+    }
+
+    public String save(Kategorie k) {
+        kat = k;
+        list = null;
+        list = ejbFacade.getFragen(kat);
+        return "/secured/CRUD/frage/List.xhtml";
     }
 
     public Frage getSelected() {
@@ -190,6 +201,14 @@ public class FrageController implements Serializable {
 
     public Frage getFrage(java.lang.Integer id) {
         return ejbFacade.find(id);
+    }
+
+    public List<Frage> getList() {
+        return list;
+    }
+
+    public void setList(List<Frage> list) {
+        this.list = list;
     }
 
     @FacesConverter(forClass = Frage.class)

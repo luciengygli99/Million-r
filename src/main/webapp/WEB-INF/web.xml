@@ -31,4 +31,7 @@
         <filter-name>LoginFilter</filter-name>
         <url-pattern>/secured/*</url-pattern>
     </filter-mapping>
+    <error-page>
+        <location>/WEB-INF/error/Basic.xhtml</location>
+    </error-page>
 </web-app>

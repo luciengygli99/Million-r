@@ -7,29 +7,18 @@
 
     <ui:composition template="/WEB-INF/templates/layout.xhtml">
         <ui:define name="content">
-            <h:outputText value="#{bundle.CreateAntwortTitle}"></h:outputText>
+            <h1>Neue Antwort</h1>
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateAntwortLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{antwortController.selected.id}" title="#{bundle.CreateAntwortTitle_id}" required="true" requiredMessage="#{bundle.CreateAntwortRequiredMessage_id}"/>
-                    <h:outputLabel value="#{bundle.CreateAntwortLabel_textA}" for="textA" />
-                    <h:inputText id="textA" value="#{antwortController.selected.textA}" title="#{bundle.CreateAntwortTitle_textA}" required="true" requiredMessage="#{bundle.CreateAntwortRequiredMessage_textA}"/>
-                    <h:outputLabel value="#{bundle.CreateAntwortLabel_falsch}" for="falsch" />
-                    <h:inputText id="falsch" value="#{antwortController.selected.falsch}" title="#{bundle.CreateAntwortTitle_falsch}" required="true" requiredMessage="#{bundle.CreateAntwortRequiredMessage_falsch}"/>
-                    <h:outputLabel value="#{bundle.CreateAntwortLabel_richtig}" for="richtig" />
-                    <h:inputText id="richtig" value="#{antwortController.selected.richtig}" title="#{bundle.CreateAntwortTitle_richtig}" required="true" requiredMessage="#{bundle.CreateAntwortRequiredMessage_richtig}"/>
-                </h:panelGrid>
+                <h:outputLabel value="Antwort" for="textA" />
+                <h:inputText id="textA" value="#{antwortController.selected.textA}" title="#{bundle.CreateAntwortTitle_textA}" required="true" requiredMessage="Antwort ist benötigt" class="form-control"/>
                 <br />
-                <h:commandLink action="#{antwortController.create}" value="#{bundle.CreateAntwortSaveLink}" />
+                <h:commandButton action="#{antwortController.create}" value="Speichern" class="btn-primary btn btn-lg button"/>
                 <br />
                 <br />
-                <h:commandLink action="#{antwortController.prepareList}" value="#{bundle.CreateAntwortShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateAntwortIndexLink}"/>
+                <h:commandButton action="#{antwortController.prepareList}" value="Alle Antworten" immediate="true" class="btn-primary btn btn-lg button"/>
             </h:form>
         </ui:define>
     </ui:composition>

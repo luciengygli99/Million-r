@@ -120,7 +120,7 @@ public class Kategorie implements Serializable {
 
     @Override
     public String toString() {
-        return "ch.bbbaden.luciengygli_lb_m151_v232.entity.Kategorie[ id=" + id + " ]";
+        return nameK;
     }
 
 }
