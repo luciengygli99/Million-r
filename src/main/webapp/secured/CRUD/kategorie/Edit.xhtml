@@ -14,7 +14,7 @@
             <h:form>
                 <h:panelGrid>
                     <h:outputLabel value="Name" for="nameK" />
-                    <h:inputText id="nameK" value="#{kategorieController.selected.nameK}" title="#{bundle.EditKategorieTitle_nameK}" required="true" requiredMessage="Name ist benötigt" class="form-control "/>
+                    <h:inputText id="nameK" value="#{kategorieController.selected.nameK}" required="true" requiredMessage="Name ist benötigt" class="form-control "/>
                 </h:panelGrid>
                 <br />
                 <h:commandButton action="#{kategorieController.update}" value="Speichern" class="btn-primary btn btn-lg button"/>

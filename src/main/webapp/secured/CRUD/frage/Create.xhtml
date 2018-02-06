@@ -14,25 +14,25 @@
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="Frage" for="frage" />
-                    <h:inputText id="frage" value="#{frageController.selected.frage}" title="#{bundle.CreateFrageTitle_frage}" required="true" requiredMessage="Frage ist benötigt" class="form-control "/>
+                    <h:inputText id="frage" value="#{frageController.selected.frage}" required="true" requiredMessage="Frage ist benötigt" class="form-control "/>
                     <h:outputLabel value="Kategorie" for="kategorieId" />
-                    <h:selectOneMenu id="kategorieId" value="#{frageController.selected.kategorieId}" title="#{bundle.CreateFrageTitle_kategorieId}" required="true" requiredMessage="Kategorie ist benötigt" class="form-control">
+                    <h:selectOneMenu id="kategorieId" value="#{frageController.selected.kategorieId}" required="true" requiredMessage="Kategorie ist benötigt" class="form-control">
                         <f:selectItems value="#{kategorieController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
                     <h:outputLabel value="Falsche Antwort 1" for="falscheA1" />
-                    <h:selectOneMenu id="falscheA1" value="#{frageController.selected.falscheA1}" title="#{bundle.CreateFrageTitle_falscheA1}" required="true" requiredMessage="Falsche Antwort 1 ist benötigt" class="form-control">
+                    <h:selectOneMenu id="falscheA1" value="#{frageController.selected.falscheA1}" required="true" requiredMessage="Falsche Antwort 1 ist benötigt" class="form-control">
                         <f:selectItems value="#{antwortController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
                     <h:outputLabel value="Falsche Antwort 2" for="falscheA2" />
-                    <h:selectOneMenu id="falscheA2" value="#{frageController.selected.falscheA2}" title="#{bundle.CreateFrageTitle_falscheA2}" required="true" requiredMessage="Falsche Antwort 2 ist benötigt" class="form-control">
+                    <h:selectOneMenu id="falscheA2" value="#{frageController.selected.falscheA2}" required="true" requiredMessage="Falsche Antwort 2 ist benötigt" class="form-control">
                         <f:selectItems value="#{antwortController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
                     <h:outputLabel value="Falsche Antwort 3" for="falscheA3" />
-                    <h:selectOneMenu id="falscheA3" value="#{frageController.selected.falscheA3}" title="#{bundle.CreateFrageTitle_falscheA3}" required="true" requiredMessage="Falsche Antwort 3 ist benötigt" class="form-control">
+                    <h:selectOneMenu id="falscheA3" value="#{frageController.selected.falscheA3}" required="true" requiredMessage="Falsche Antwort 3 ist benötigt" class="form-control">
                         <f:selectItems value="#{antwortController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
                     <h:outputLabel value="Richtige Antwort" for="richtigeA" />
-                    <h:selectOneMenu id="richtigeA" value="#{frageController.selected.richtigeA}" title="#{bundle.CreateFrageTitle_richtigeA}" required="true" requiredMessage="Richtige Antwort ist benötigt" class="form-control">
+                    <h:selectOneMenu id="richtigeA" value="#{frageController.selected.richtigeA}" required="true" requiredMessage="Richtige Antwort ist benötigt" class="form-control">
                         <f:selectItems value="#{antwortController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
                 </h:panelGrid>

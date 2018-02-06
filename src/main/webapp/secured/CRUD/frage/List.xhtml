@@ -19,7 +19,7 @@
                 </h:panelGroup>
                 <br />
                 <h:panelGroup rendered="#{frageController.list.size() > 0}">
-                <h:dataTable value="#{frageController.list}" var="frage" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                <h:dataTable value="#{frageController.list}" var="frage" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px" class="table table-bordered">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="ID"/>

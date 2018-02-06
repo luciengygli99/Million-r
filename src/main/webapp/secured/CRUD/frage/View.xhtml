@@ -7,39 +7,35 @@
 
     <ui:composition template="/WEB-INF/templates/layout.xhtml">
         <ui:define name="content">
-            <h:outputText value="#{bundle.ViewFrageTitle}"></h:outputText>
+            <h1>Frage #{frageController.selected.id}</h1>
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewFrageLabel_id}"/>
+                <h:panelGrid columns="2" class="table table-bordered" style="border:solid 1px">
+                    <h:outputText value="ID"/>
                     <h:outputText value="#{frageController.selected.id}" title="#{bundle.ViewFrageTitle_id}"/>
-                    <h:outputText value="#{bundle.ViewFrageLabel_frage}"/>
+                    <h:outputText value="Frage"/>
                     <h:outputText value="#{frageController.selected.frage}" title="#{bundle.ViewFrageTitle_frage}"/>
-                    <h:outputText value="#{bundle.ViewFrageLabel_kategorieId}"/>
-                    <h:outputText value="#{frageController.selected.kategorieId}" title="#{bundle.ViewFrageTitle_kategorieId}"/>
-                    <h:outputText value="#{bundle.ViewFrageLabel_falscheA1}"/>
+                    <h:outputText value="Kategorie"/>
+                    <h:outputText value="#{frageController.selected.kategorieId.nameK}" title="#{bundle.ViewFrageTitle_kategorieId}"/>
+                    <h:outputText value="Falsche Antwort 1"/>
                     <h:outputText value="#{frageController.selected.falscheA1}" title="#{bundle.ViewFrageTitle_falscheA1}"/>
-                    <h:outputText value="#{bundle.ViewFrageLabel_falscheA2}"/>
+                    <h:outputText value="Falsche Antwort 2"/>
                     <h:outputText value="#{frageController.selected.falscheA2}" title="#{bundle.ViewFrageTitle_falscheA2}"/>
-                    <h:outputText value="#{bundle.ViewFrageLabel_falscheA3}"/>
+                    <h:outputText value="Falsche Anktwort 3"/>
                     <h:outputText value="#{frageController.selected.falscheA3}" title="#{bundle.ViewFrageTitle_falscheA3}"/>
-                    <h:outputText value="#{bundle.ViewFrageLabel_richtigeA}"/>
+                    <h:outputText value="Richtige Antwort"/>
                     <h:outputText value="#{frageController.selected.richtigeA}" title="#{bundle.ViewFrageTitle_richtigeA}"/>
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{frageController.destroyAndView}" value="#{bundle.ViewFrageDestroyLink}"/>
+                <h:commandButton action="#{frageController.destroyAndView}" value="Löschen" class="btn-primary btn btn-lg button"/>
                 <br />
                 <br />
-                <h:link outcome="Edit" value="#{bundle.ViewFrageEditLink}"/>
-                <br />
-                <h:commandLink action="#{frageController.prepareCreate}" value="#{bundle.ViewFrageCreateLink}" />
-                <br />
-                <h:commandLink action="#{frageController.prepareList}" value="#{bundle.ViewFrageShowAllLink}"/>
+                <h:commandButton action="Edit" value="Bearbeiten" class="btn-primary btn btn-lg button"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.ViewFrageIndexLink}"/>
+                <h:commandButton action="#{frageController.prepareList}" value="Abbrechen" immediate="true" class="btn-primary btn btn-lg button"/>
 
             </h:form>
         </ui:define>
