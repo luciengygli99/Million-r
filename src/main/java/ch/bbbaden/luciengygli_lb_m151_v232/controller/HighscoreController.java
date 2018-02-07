@@ -6,17 +6,48 @@
 package ch.bbbaden.luciengygli_lb_m151_v232.controller;
 
 import ch.bbbaden.luciengygli_lb_m151_v232.controller.util.PaginationHelper;
+import ch.bbbaden.luciengygli_lb_m151_v232.entity.Durchlauf;
+import ch.bbbaden.luciengygli_lb_m151_v232.facade.HighscoreFacade;
+import java.io.Serializable;
+import java.util.List;
+import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+import javax.inject.Named;
 
 /**
  *
  * @author Lucien Gygli
  */
-public class HighscoreController {
+@Named("highscoreController")
+@SessionScoped
+public class HighscoreController implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private DataModel items = null;
+    private String userNow;
     private PaginationHelper pagination;
+    @EJB
+    private ch.bbbaden.luciengygli_lb_m151_v232.facade.HighscoreFacade ejbFacade;
+    private List<Durchlauf> list;
+
+    public HighscoreController() {
+        userNow = null;
+        list = null;
+    }
+
+    public String reload() {
+        if (userNow != null) {
+            list = ejbFacade.getDurchlauf(userNow);
+        }
+        return "highscores.xhtml";
+    }
+
+    public boolean isUser() {
+        return !ejbFacade.getDurchlauf(userNow).isEmpty();
+    }
 
     public DataModel getItems() {
         if (items == null) {
@@ -41,6 +72,18 @@ public class HighscoreController {
             };
         }
         return pagination;
+    }
+
+    private HighscoreFacade getFacade() {
+        return ejbFacade;
+    }
+
+    public String getUserNow() {
+        return userNow;
+    }
+
+    public void setUserNow(String userNow) {
+        this.userNow = userNow;
     }
 
 }
