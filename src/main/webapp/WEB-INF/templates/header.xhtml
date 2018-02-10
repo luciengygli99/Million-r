@@ -14,13 +14,14 @@ and open the template in the editor.
         <h:form>
             <nav class="navbar navbar-inverse">
                 <div class="container-fluid">
-                    <h:panelGroup rendered="#{loginController.loggedIn}">
-                        <ul class="nav navbar-nav">
+                    <ul class="nav navbar-nav">
+                        <h:panelGroup rendered="#{loginController.loggedIn}">
                             <li><a href="/LucienGygli_LB_M151_V232/secured/index.xhtml">Home</a></li>
                             <li><a href="/LucienGygli_LB_M151_V232/secured/CRUD/kategorie/List.xhtml">Kategorien</a></li>
-                            <li><a href="/LucienGygli_LB_M151_V232/secured/highscores.xhtml">Highscores</a></li>
-                        </ul>
-                    </h:panelGroup>
+                        </h:panelGroup>
+                        <li><a href="/LucienGygli_LB_M151_V232/highscores.xhtml">Highscores</a></li>
+                    </ul>
+                    
 
                     <ul class="nav navbar-nav navbar-right">
                         <h:panelGroup rendered="#{loginController.loggedIn}">

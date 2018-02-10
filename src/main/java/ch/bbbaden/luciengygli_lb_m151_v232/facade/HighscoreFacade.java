@@ -32,8 +32,30 @@ public class HighscoreFacade extends AbstractFacade<Durchlauf> {
         super(Durchlauf.class);
     }
 
+    public List<Durchlauf> getRanking() {
+        Query query = em.createQuery("SELECT d FROM Durchlauf d ORDER BY d.score DESC");
+        List<Durchlauf> d = query.getResultList();
+        for (Durchlauf du : d) {
+            addRank(du);
+        }
+        return d;
+    }
+
+    public List<Durchlauf> getDruchlaufVon(String name) {
+        Query query = em.createNamedQuery("Durchlauf.findByUser");
+        query.setParameter("user", name);
+
+        return query.getResultList();
+    }
+
+    public void addRank(Durchlauf d) {
+        Query query = em.createQuery("SELECT COUNT(d) FROM Durchlauf d WHERE d.score > :s");
+        query.setParameter("s", d.getScore());
+        d.setRank(Integer.valueOf(String.valueOf(query.getSingleResult())) + 1);
+    }
+
     public List<Durchlauf> getDurchlauf(String user) {
-        Query q = em.createQuery("SELECT d FROM Durchlauf d WHERE d.user = :user", Durchlauf.class);
+        Query q = em.createQuery("SELECT d FROM Durchlauf d WHERE d.user = :user ORDER BY d.score DESC", Durchlauf.class);
         q.setParameter("user", user);
 
         List<Durchlauf> durchlauf = new ArrayList<>();

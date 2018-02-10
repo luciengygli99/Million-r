@@ -38,6 +38,26 @@ public class HighscoreController implements Serializable {
         list = null;
     }
 
+    public List<Durchlauf> getDruchlaufe() {
+        List<Durchlauf> ds = ejbFacade.getRanking();
+
+        for (Durchlauf d : ds) {
+            ejbFacade.addRank(d);
+        }
+
+        return ds;
+    }
+
+    public List<Durchlauf> getDurchlaufsVon() {
+        List<Durchlauf> ds = ejbFacade.getDruchlaufVon(userNow);
+
+        for (Durchlauf d : ds) {
+            ejbFacade.addRank(d);
+        }
+
+        return ds;
+    }
+
     public String reload() {
         if (userNow != null) {
             list = ejbFacade.getDurchlauf(userNow);

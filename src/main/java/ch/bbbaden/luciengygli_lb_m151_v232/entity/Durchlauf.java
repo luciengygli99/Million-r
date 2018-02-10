@@ -6,6 +6,7 @@
 package ch.bbbaden.luciengygli_lb_m151_v232.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +18,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -29,10 +33,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "durchlauf")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Durchlauf.findAll", query = "SELECT d FROM Durchlauf d")
+    @NamedQuery(name = "Durchlauf.findAll", query = "SELECT d FROM Durchlauf d ORDER BY d.score DESC")
     , @NamedQuery(name = "Durchlauf.findById", query = "SELECT d FROM Durchlauf d WHERE d.id = :id")
-    , @NamedQuery(name = "Durchlauf.findByUser", query = "SELECT d FROM Durchlauf d WHERE d.user = :user")
-    , @NamedQuery(name = "Durchlauf.findByScore", query = "SELECT d FROM Durchlauf d WHERE d.score = :score")})
+    , @NamedQuery(name = "Durchlauf.findByUser", query = "SELECT d FROM Durchlauf d WHERE d.user = :user ORDER BY d.score DESC")
+    , @NamedQuery(name = "Durchlauf.findByScore", query = "SELECT d FROM Durchlauf d WHERE d.score = :score")
+    , @NamedQuery(name = "Druchlauf.findByFinish_date", query = "SELECT d FROM Durchlauf d WHERE d.finish_date = :finish_date")})
 public class Durchlauf implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -50,9 +55,16 @@ public class Durchlauf implements Serializable {
     @NotNull
     @Column(name = "score")
     private int score;
+    @Basic(optional = false)
+    @NotNull
+    @Temporal(TemporalType.DATE)
+    @Column(name = "finish_date")
+    private Date finish_date;
     @JoinColumn(name = "kategorie_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Kategorie kategorieId;
+    @Transient
+    private int rank;
 
     public Durchlauf() {
     }
@@ -97,6 +109,22 @@ public class Durchlauf implements Serializable {
 
     public void setKategorieId(Kategorie kategorieId) {
         this.kategorieId = kategorieId;
+    }
+
+    public Date getFinish_date() {
+        return finish_date;
+    }
+
+    public void setFinish_date(Date finish_date) {
+        this.finish_date = finish_date;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
     }
 
     @Override
