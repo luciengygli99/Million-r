@@ -46,6 +46,18 @@
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
+                                    <h:outputText value="Points"/>
+                                </f:facet>
+                                <h:outputText value="#{item.score} * #{item.timeUsed}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Time Needed"/>
+                                </f:facet>
+                                <h:outputText value="#{item.timeUsed}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
                                     <h:outputText value="Score"/>
                                 </f:facet>
                                 <h:outputText value="#{item.score}"/>

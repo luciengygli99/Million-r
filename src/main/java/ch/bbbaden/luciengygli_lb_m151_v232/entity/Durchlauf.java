@@ -60,6 +60,9 @@ public class Durchlauf implements Serializable {
     @Temporal(TemporalType.DATE)
     @Column(name = "finish_date")
     private Date finish_date;
+    @NotNull
+    @Column(name = "timeUsed")
+    private int timeUsed;
     @JoinColumn(name = "kategorie_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Kategorie kategorieId;
@@ -73,10 +76,12 @@ public class Durchlauf implements Serializable {
         this.id = id;
     }
 
-    public Durchlauf(Integer id, String user, int score) {
+    public Durchlauf(Integer id, String user, int score, Date finish_Date, int timeUsed) {
         this.id = id;
         this.user = user;
         this.score = score;
+        this.finish_date = finish_Date;
+        this.timeUsed = timeUsed;
     }
 
     public Integer getId() {
@@ -125,6 +130,14 @@ public class Durchlauf implements Serializable {
 
     public void setRank(int rank) {
         this.rank = rank;
+    }
+
+    public int getTimeUsed() {
+        return timeUsed;
+    }
+
+    public void setTimeUsed(int timeUsed) {
+        this.timeUsed = timeUsed;
     }
 
     @Override

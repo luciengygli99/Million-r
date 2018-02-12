@@ -81,7 +81,6 @@ public class AntwortController implements Serializable {
 
     public String create() {
         try {
-            current.setGewählt(0);
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("AntwortCreated"));
             return prepareCreate();

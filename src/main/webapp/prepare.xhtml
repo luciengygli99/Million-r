@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:composition template="/WEB-INF/templates/layout.xhtml">
+
+        <ui:define name="content">
+        <p> Das Quiz beginnt in <span id="countdowntimer">10 </span> Sekunden.</p>
+
+        <script type="text/javascript">
+            var timeleft = 10;
+            var timer = setInterval(function(){
+                timeleft--;
+                document.getElementById("countdowntimer").textContent = timeleft;
+                if(timeleft &lt;= 0) {
+                    window.location = "question.xhtml";
+                }else{
+                    
+                }
+            },1000);
+        </script>
+        </ui:define>
+    </ui:composition>   
+</html>
+

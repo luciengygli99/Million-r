@@ -5,7 +5,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <ui:composition template="/WEB-INF/templates/layout.xhtml">
-        
+
         <ui:define name="content">
             <h1>Wer wird Millionär?</h1>
             <br/>
@@ -17,7 +17,9 @@
                 At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
             </p>
             <br/>
-                <h:commandButton value="Start" class="btn-primary btn btn-lg button"></h:commandButton>      
+            <h:form>
+                <h:commandButton  type="submit" action="chooseKategory.xhtml" value="Start" class="btn-primary btn btn-lg button"></h:commandButton>   
+            </h:form>
         </ui:define>
     </ui:composition>   
 </html>

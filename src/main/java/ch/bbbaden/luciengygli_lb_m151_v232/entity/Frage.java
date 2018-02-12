@@ -45,6 +45,12 @@ public class Frage implements Serializable {
     @Size(min = 1, max = 100)
     @Column(name = "frage")
     private String frage;
+    @NotNull
+    @Column(name = "richtig")
+    private int richtig;
+    @NotNull
+    @Column(name = "falsch")
+    private int falsch;
     @JoinColumn(name = "kategorie_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Kategorie kategorieId;
@@ -127,6 +133,22 @@ public class Frage implements Serializable {
 
     public void setRichtigeA(Antwort richtigeA) {
         this.richtigeA = richtigeA;
+    }
+
+    public int getRichtig() {
+        return richtig;
+    }
+
+    public void setRichtig(int richtig) {
+        this.richtig = richtig;
+    }
+
+    public int getFalsch() {
+        return falsch;
+    }
+
+    public void setFalsch(int falsch) {
+        this.falsch = falsch;
     }
 
     @Override

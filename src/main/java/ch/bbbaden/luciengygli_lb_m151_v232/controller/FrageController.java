@@ -92,6 +92,8 @@ public class FrageController implements Serializable {
 
     public String create() {
         try {
+            current.setRichtig(0);
+            current.setFalsch(0);
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("FrageCreated"));
             return prepareCreate();

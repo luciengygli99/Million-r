@@ -29,8 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Antwort.findAll", query = "SELECT a FROM Antwort a")
     , @NamedQuery(name = "Antwort.findById", query = "SELECT a FROM Antwort a WHERE a.id = :id")
-    , @NamedQuery(name = "Antwort.findByTextA", query = "SELECT a FROM Antwort a WHERE a.textA = :textA")
-    , @NamedQuery(name = "Antwort.findByGew\u00e4hlt", query = "SELECT a FROM Antwort a WHERE a.gew\u00e4hlt = :gew\u00e4hlt")})
+    , @NamedQuery(name = "Antwort.findByTextA", query = "SELECT a FROM Antwort a WHERE a.textA = :textA")})
 public class Antwort implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -44,10 +43,6 @@ public class Antwort implements Serializable {
     @Size(min = 1, max = 30)
     @Column(name = "textA")
     private String textA;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "gew\u00e4hlt")
-    private int gewählt;
 
     public Antwort() {
     }
@@ -56,10 +51,9 @@ public class Antwort implements Serializable {
         this.id = id;
     }
 
-    public Antwort(Integer id, String textA, int gewählt) {
+    public Antwort(Integer id, String textA) {
         this.id = id;
         this.textA = textA;
-        this.gewählt = gewählt;
     }
 
     public Integer getId() {
@@ -76,14 +70,6 @@ public class Antwort implements Serializable {
 
     public void setTextA(String textA) {
         this.textA = textA;
-    }
-
-    public int getGewählt() {
-        return gewählt;
-    }
-
-    public void setGewählt(int gewählt) {
-        this.gewählt = gewählt;
     }
 
     @Override

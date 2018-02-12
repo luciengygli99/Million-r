@@ -17,8 +17,6 @@
                     <h:inputText id="id" value="#{antwortController.selected.id}" title="#{bundle.EditAntwortTitle_id}" required="true" requiredMessage="#{bundle.EditAntwortRequiredMessage_id}"/>
                     <h:outputLabel value="#{bundle.EditAntwortLabel_textA}" for="textA" />
                     <h:inputText id="textA" value="#{antwortController.selected.textA}" title="#{bundle.EditAntwortTitle_textA}" required="true" requiredMessage="#{bundle.EditAntwortRequiredMessage_textA}"/>
-                    <h:outputLabel value="#{bundle.EditAntwortLabel_gewählt}" for="gewählt" />
-                    <h:inputText id="gewählt" value="#{antwortController.selected.gewählt}" title="#{bundle.EditAntwortTitle_gewählt}" required="true" requiredMessage="#{bundle.EditAntwortRequiredMessage_gewählt}"/>
                 </h:panelGrid>
                 <h:commandLink action="#{antwortController.update}" value="#{bundle.EditAntwortSaveLink}"/>
                 <br />

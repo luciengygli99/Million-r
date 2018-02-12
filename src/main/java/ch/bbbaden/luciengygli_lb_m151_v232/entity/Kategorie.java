@@ -7,6 +7,7 @@ package ch.bbbaden.luciengygli_lb_m151_v232.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -48,9 +49,9 @@ public class Kategorie implements Serializable {
     @Column(name = "nameK")
     private String nameK;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "kategorieId")
-    private Collection<Frage> frageCollection;
+    private List<Frage> frageList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "kategorieId")
-    private Collection<Durchlauf> durchlaufCollection;
+    private List<Durchlauf> durchlaufList;
 
     public Kategorie() {
     }
@@ -81,21 +82,21 @@ public class Kategorie implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Frage> getFrageCollection() {
-        return frageCollection;
+    public List<Frage> getFrageList() {
+        return frageList;
     }
 
-    public void setFrageCollection(Collection<Frage> frageCollection) {
-        this.frageCollection = frageCollection;
+    public void setFrageList(List<Frage> frageList) {
+        this.frageList = frageList;
     }
 
     @XmlTransient
-    public Collection<Durchlauf> getDurchlaufCollection() {
-        return durchlaufCollection;
+    public List<Durchlauf> getDurchlaufList() {
+        return durchlaufList;
     }
 
-    public void setDurchlaufCollection(Collection<Durchlauf> durchlaufCollection) {
-        this.durchlaufCollection = durchlaufCollection;
+    public void setDurchlaufList(List<Durchlauf> durchlaufList) {
+        this.durchlaufList = durchlaufList;
     }
 
     @Override

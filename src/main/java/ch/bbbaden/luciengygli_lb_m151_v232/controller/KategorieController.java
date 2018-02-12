@@ -30,7 +30,6 @@ public class KategorieController implements Serializable {
     private int selectedItemIndex;
 
     public KategorieController() {
-
     }
 
     public Kategorie getSelected() {
