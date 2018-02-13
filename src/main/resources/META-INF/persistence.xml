@@ -2,7 +2,13 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="ch.bbbaden_LucienGygli_LB_M151_V232_war_1.0-SNAPSHOTPU" transaction-type="JTA">
     <jta-data-source>java:app/LB</jta-data-source>
-    <exclude-unlisted-classes>false</exclude-unlisted-classes>
-    <properties/>
+    <class>ch.bbbaden.luciengygli_lb_m151_v232.entity.Antwort</class>
+    <class>ch.bbbaden.luciengygli_lb_m151_v232.entity.Durchlauf</class>
+    <class>ch.bbbaden.luciengygli_lb_m151_v232.entity.Frage</class>
+    <class>ch.bbbaden.luciengygli_lb_m151_v232.entity.Kategorie</class>
+    <class>ch.bbbaden.luciengygli_lb_m151_v232.entity.User</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <properties>
+    </properties>
   </persistence-unit>
 </persistence>

@@ -9,8 +9,10 @@ import ch.bbbaden.luciengygli_lb_m151_v232.entity.Frage;
 import ch.bbbaden.luciengygli_lb_m151_v232.entity.Kategorie;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 /**
  *
@@ -21,19 +23,35 @@ public class Quiz {
     private List<Kategorie> k;
     private List<Frage> f;
     private int score;
-    private Date start;
+    private Date taken;
     private boolean finished;
-    private int timeGoneBy;
+    private int duration;
+    private long quizStarted;
+    private long quizEnded;
 
     public Quiz(ArrayList<Kategorie> k) {
         this.k = k;
         f = new ArrayList<>();
         for (Kategorie ka : k) {
-            for (Frage fa : ka.getFrageList()) {
-                f.add(fa);
-            }
+            f.addAll(ka.getFrageList());
         }
+        Collections.shuffle(f);
+        if (f.size() >= 10) {
+            f = f.subList(0, 9);
+        }
+    }
 
+    public void startCount() {
+        quizStarted = System.currentTimeMillis();
+    }
+
+    public void endCount() {
+        quizEnded = System.currentTimeMillis();
+        calculateDuration();
+    }
+
+    public void calculateDuration() {
+        duration = (int) ((quizEnded - quizStarted) / 1000);
     }
 
     public int getScore() {
@@ -44,12 +62,12 @@ public class Quiz {
         this.score = score;
     }
 
-    public Date getStart() {
-        return start;
+    public Date getTaken() {
+        return taken;
     }
 
-    public void setStart(Date start) {
-        this.start = start;
+    public void setTaken(Date taken) {
+        this.taken = taken;
     }
 
     public boolean isFinished() {
@@ -60,12 +78,16 @@ public class Quiz {
         this.finished = finished;
     }
 
-    public int getTimeGoneBy() {
-        return timeGoneBy;
+    public int getDuration() {
+        return duration;
     }
 
-    public void setTimeGoneBy(int timeGoneBy) {
-        this.timeGoneBy = timeGoneBy;
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public List<Frage> getF() {
+        return f;
     }
 
 }

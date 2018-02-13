@@ -35,7 +35,7 @@ public class LoginController implements Serializable {
         u = uf.checkLogin(username, password);
 
         if (u != null) {
-            return "secured/index.xhtml?faces-redirect=true";
+            return "index.xhtml?faces-redirect=true";
         } else {
             return "index.xhtml";
         }

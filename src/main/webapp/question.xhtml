@@ -2,12 +2,43 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
     <ui:composition template="/WEB-INF/templates/layout.xhtml">
-        
+
         <ui:define name="content">
-            <p>fancy</p>
+            <p>Sie haben noch <span id="countdowntimer">30</span> Sekunden Zeit.</p>
+            <p>Frage:</p>
+            <h:outputText value="#{quizController.current.frage}"/>
+
+            <div class="row mt-3">
+
+                <ui:repeat value="#{quizController.getRandomAntwort()}" var="a">
+
+                    <h:form class="col-6 mt-4">
+                        <h:commandButton action="#{quizController.antworten(a)}" value="#{a.textA}" class="btn btn-lg btn-default" style="width:100%;"/>
+                    </h:form>
+
+                </ui:repeat>
+
+                <h:form>
+                    <h:commandButton a:id="btn_null" action="#{quizController.antworten(null)}" style="display: none;"/>
+                </h:form>    
+
+            </div>
+            <script type="text/javascript">
+                var timeleft = 30;
+                var timer = setInterval(function () {
+                    timeleft--;
+                    document.getElementById("countdowntimer").textContent = timeleft;
+                    if (timeleft &lt;= 0) {
+                        document.getElementById("btn_null").click();
+                    }
+                }, 1000);
+            </script>
+
         </ui:define>
     </ui:composition>   
 </html>

@@ -11,29 +11,57 @@ and open the template in the editor.
 
 
     <ui:composition>
-        <h:form>
-            <nav class="navbar navbar-inverse">
-                <div class="container-fluid">
-                    <ul class="nav navbar-nav">
-                        <li><a href="/LucienGygli_LB_M151_V232/index.xhtml">Home</a></li>
-                        <h:panelGroup rendered="#{loginController.loggedIn}">
-                            <li><a href="/LucienGygli_LB_M151_V232/secured/CRUD/kategorie/List.xhtml">Kategorien</a></li>
-                        </h:panelGroup>
-                        <li><a href="/LucienGygli_LB_M151_V232/highscores.xhtml">Highscores</a></li>
-                    </ul>
-                    
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <h:form>
+                            <h:commandLink class="nav-link" action="/index.xhtml">Home</h:commandLink>
+                        </h:form>
+                    </li>
+                    <h:form rendered="#{loginController.loggedIn}">
+                        <li class="nav-item">
+                            <h:commandLink class="nav-link" action="/secured/CRUD/kategorie/List.xhtml">Kategorien</h:commandLink>
+                        </li>
+                    </h:form>
+                    <li class="nav-item">
+                        <h:form>
+                            <h:commandLink class="nav-link" action="/highscores.xhtmlx">Highscores</h:commandLink>
+                        </h:form>
+                    </li>
+                </ul>
+
+                <h:form rendered="#{loginController.loggedIn}">   
 
                     <ul class="nav navbar-nav navbar-right">
-                        <h:panelGroup rendered="#{loginController.loggedIn}">
-                            <li><h:commandLink action="#{loginController.logout()}">Logout</h:commandLink></li>
-                        </h:panelGroup>
-                        <h:panelGroup rendered="#{!loginController.loggedIn}">
-                            <li><a href="login.xhtml">Admin</a></li>
-                        </h:panelGroup>
+
+                        <li class="nav-item">
+                            <h:commandLink value="Logout" action="#{loginController.logout()}" class="nav-link"/>
+                        </li>
+
                     </ul>
-                </div>
-            </nav>
-        </h:form>
+
+                </h:form>
+
+                <h:form rendered="#{not loginController.loggedIn}">   
+
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li class="nav-item">
+                            <h:commandLink value="Admin" action="/login.xhtml" class="nav-link"/>
+                        </li>
+
+                    </ul>
+
+                </h:form>
+
+            </div>
+        </nav>   
     </ui:composition>
 
 </html>

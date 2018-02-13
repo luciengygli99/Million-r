@@ -6,15 +6,16 @@
 package ch.bbbaden.luciengygli_lb_m151_v232.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -29,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Lucien Gygli
  */
 @Entity
-@Table(name = "kategorie")
+@Table(name = "kategorie", catalog = "luciengygli_lb_m151_v232", schema = "")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Kategorie.findAll", query = "SELECT k FROM Kategorie k")
@@ -41,17 +42,17 @@ public class Kategorie implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 30)
-    @Column(name = "nameK")
+    @Column(name = "nameK", nullable = false, length = 30)
     private String nameK;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "kategorieId")
-    private List<Frage> frageList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "kategorieId")
+    @ManyToMany(mappedBy = "kategorieList", fetch = FetchType.LAZY)
     private List<Durchlauf> durchlaufList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "kategorieId", fetch = FetchType.LAZY)
+    private List<Frage> frageList;
 
     public Kategorie() {
     }
@@ -82,21 +83,21 @@ public class Kategorie implements Serializable {
     }
 
     @XmlTransient
-    public List<Frage> getFrageList() {
-        return frageList;
-    }
-
-    public void setFrageList(List<Frage> frageList) {
-        this.frageList = frageList;
-    }
-
-    @XmlTransient
     public List<Durchlauf> getDurchlaufList() {
         return durchlaufList;
     }
 
     public void setDurchlaufList(List<Durchlauf> durchlaufList) {
         this.durchlaufList = durchlaufList;
+    }
+
+    @XmlTransient
+    public List<Frage> getFrageList() {
+        return frageList;
+    }
+
+    public void setFrageList(List<Frage> frageList) {
+        this.frageList = frageList;
     }
 
     @Override

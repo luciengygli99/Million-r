@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Lucien Gygli
  */
 @Entity
-@Table(name = "user")
+@Table(name = "user", catalog = "luciengygli_lb_m151_v232", schema = "")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
@@ -38,17 +38,17 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 30)
-    @Column(name = "username")
+    @Column(name = "username", nullable = false, length = 30)
     private String username;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 30)
-    @Column(name = "pw")
+    @Column(name = "pw", nullable = false, length = 30)
     private String pw;
 
     public User() {

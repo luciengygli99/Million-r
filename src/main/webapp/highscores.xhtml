@@ -20,7 +20,7 @@
                         <h:dataTable value="#{highscoreController.getDurchlaufsVon()}" var="item" border="0" cellpadding="0" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px" class="table table-bordered">
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Rank"/>
+                                    <h:outputText value="Rang"/>
                                 </f:facet>
                                 <h:outputText value="#{item.rank}"/>
                             </h:column>
@@ -28,39 +28,43 @@
                                 <f:facet name="header">
                                     <h:outputText value="Kategorie"/>
                                 </f:facet>
-                                <h:outputText value="#{item.kategorieId.nameK}"/>
+                                <h:outputText value="#{item.kategorieListToString()}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="User"/>
+                                    <h:outputText value="Spieler"/>
                                 </f:facet>
                                 <h:outputText value="#{item.user}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Finished"/>
+                                    <h:outputText value="Beendet"/>
                                 </f:facet>
-                                <h:outputText value="#{item.finish_date}">
+                                <h:outputText value="#{item.finishDate}">
                                     <f:convertDateTime pattern="dd.MM.yyyy"/>
                                 </h:outputText>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Points"/>
+                                    <h:outputText value="Punkte"/>
                                 </f:facet>
-                                <h:outputText value="#{item.score} * #{item.timeUsed}"/>
+                                <h:outputText value="#{item.score * item.timeUsed}">
+                                    <f:convertNumber integerOnly="true"/>
+                                </h:outputText>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Time Needed"/>
+                                    <h:outputText value="Zeit gebraucht"/>
                                 </f:facet>
                                 <h:outputText value="#{item.timeUsed}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Score"/>
+                                    <h:outputText value="Gewichtete Punkte"/>
                                 </f:facet>
-                                <h:outputText value="#{item.score}"/>
+                                <h:outputText value="#{item.score}">
+                                    <f:convertNumber maxFractionDigits="3"/>
+                                </h:outputText>
                             </h:column>
                             <c:if test="#{loginController.loggedIn}">
                                 <h:column>
@@ -76,45 +80,61 @@
 
                     <h:dataTable value="#{highscoreController.druchlaufe}" var="item" border="0" cellpadding="0" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px" class="table table-bordered">
                         <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Rank"/>
-                            </f:facet>
-                            <h:outputText value="#{item.rank}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Kategorie"/>
-                            </f:facet>
-                            <h:outputText value="#{item.kategorieId.nameK}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="User"/>
-                            </f:facet>
-                            <h:outputText value="#{item.user}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Finished"/>
-                            </f:facet>
-                            <h:outputText value="#{item.finish_date}">
-                                <f:convertDateTime pattern="dd.MM.yyyy"/>
-                            </h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Score"/>
-                            </f:facet>
-                            <h:outputText value="#{item.score}"/>
-                        </h:column>
-                        <c:if test="#{loginController.loggedIn}">
+                                <f:facet name="header">
+                                    <h:outputText value="Rang"/>
+                                </f:facet>
+                                <h:outputText value="#{item.rank}"/>
+                            </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Bearbeiten" />
+                                    <h:outputText value="Kategorie"/>
                                 </f:facet>
-                                <h:commandLink action="#{kategorieController.destroy}" value="Löschen"/>
+                                <h:outputText value="#{item.kategorieListToString()}"/>
                             </h:column>
-                        </c:if>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Spieler"/>
+                                </f:facet>
+                                <h:outputText value="#{item.user}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Beendet"/>
+                                </f:facet>
+                                <h:outputText value="#{item.finishDate}">
+                                    <f:convertDateTime pattern="dd.MM.yyyy"/>
+                                </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Punkte"/>
+                                </f:facet>
+                                <h:outputText value="#{item.score * item.timeUsed}">
+                                    <f:convertNumber integerOnly="true"/>
+                                </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Zeit gebraucht"/>
+                                </f:facet>
+                                <h:outputText value="#{item.timeUsed}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Gewichtete Punkte"/>
+                                </f:facet>
+                                <h:outputText value="#{item.score}">
+                                    <f:convertNumber maxFractionDigits="3"/>
+                                </h:outputText>
+                            </h:column>
+                            <c:if test="#{loginController.loggedIn}">
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Bearbeiten" />
+                                    </f:facet>
+                                    <h:commandLink action="#{kategorieController.destroy}" value="Löschen"/>
+                                </h:column>
+                            </c:if>
                     </h:dataTable>
                     <br />
                 </h:panelGroup>

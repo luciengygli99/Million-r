@@ -6,25 +6,30 @@
 package ch.bbbaden.luciengygli_lb_m151_v232.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author Lucien Gygli
  */
 @Entity
-@Table(name = "antwort")
+@Table(name = "antwort", catalog = "luciengygli_lb_m151_v232", schema = "")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Antwort.findAll", query = "SELECT a FROM Antwort a")
@@ -36,13 +41,21 @@ public class Antwort implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 30)
-    @Column(name = "textA")
+    @Column(name = "textA", nullable = false, length = 30)
     private String textA;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "falscheA1", fetch = FetchType.LAZY)
+    private List<Frage> frageList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "falscheA2", fetch = FetchType.LAZY)
+    private List<Frage> frageList1;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "falscheA3", fetch = FetchType.LAZY)
+    private List<Frage> frageList2;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "richtigeA", fetch = FetchType.LAZY)
+    private List<Frage> frageList3;
 
     public Antwort() {
     }
@@ -70,6 +83,42 @@ public class Antwort implements Serializable {
 
     public void setTextA(String textA) {
         this.textA = textA;
+    }
+
+    @XmlTransient
+    public List<Frage> getFrageList() {
+        return frageList;
+    }
+
+    public void setFrageList(List<Frage> frageList) {
+        this.frageList = frageList;
+    }
+
+    @XmlTransient
+    public List<Frage> getFrageList1() {
+        return frageList1;
+    }
+
+    public void setFrageList1(List<Frage> frageList1) {
+        this.frageList1 = frageList1;
+    }
+
+    @XmlTransient
+    public List<Frage> getFrageList2() {
+        return frageList2;
+    }
+
+    public void setFrageList2(List<Frage> frageList2) {
+        this.frageList2 = frageList2;
+    }
+
+    @XmlTransient
+    public List<Frage> getFrageList3() {
+        return frageList3;
+    }
+
+    public void setFrageList3(List<Frage> frageList3) {
+        this.frageList3 = frageList3;
     }
 
     @Override
