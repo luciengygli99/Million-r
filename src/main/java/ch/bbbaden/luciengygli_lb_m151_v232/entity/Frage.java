@@ -7,6 +7,7 @@ package ch.bbbaden.luciengygli_lb_m151_v232.entity;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -57,19 +58,19 @@ public class Frage implements Serializable {
     @Column(name = "falsch", nullable = false)
     private int falsch;
     @JoinColumn(name = "kategorie_id", referencedColumnName = "id", nullable = false)
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     private Kategorie kategorieId;
     @JoinColumn(name = "falscheA1", referencedColumnName = "id", nullable = false)
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     private Antwort falscheA1;
     @JoinColumn(name = "falscheA2", referencedColumnName = "id", nullable = false)
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     private Antwort falscheA2;
     @JoinColumn(name = "falscheA3", referencedColumnName = "id", nullable = false)
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     private Antwort falscheA3;
     @JoinColumn(name = "richtigeA", referencedColumnName = "id", nullable = false)
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     private Antwort richtigeA;
 
     public Frage() {

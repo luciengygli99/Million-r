@@ -8,7 +8,10 @@
 
         <ui:define name="content">
             <h:form>
-                <h:inputText value="#{quizController.user}" />
+                <p>Bitte geben Sie Ihren Namen ein:</p>
+                <h:inputText value="#{quizController.user}" class="form-control" required="true"/>
+                <br />
+                <br />
                 <h:commandButton  type="submit" action="#{quizController.finish()}" value="Finish" class="btn-primary btn btn-lg button"></h:commandButton>   
             </h:form>
         </ui:define>

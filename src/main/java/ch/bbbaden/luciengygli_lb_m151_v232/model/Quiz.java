@@ -8,11 +8,9 @@ package ch.bbbaden.luciengygli_lb_m151_v232.model;
 import ch.bbbaden.luciengygli_lb_m151_v232.entity.Frage;
 import ch.bbbaden.luciengygli_lb_m151_v232.entity.Kategorie;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 /**
  *
@@ -29,7 +27,7 @@ public class Quiz {
     private long quizStarted;
     private long quizEnded;
 
-    public Quiz(ArrayList<Kategorie> k) {
+    public Quiz(List<Kategorie> k) {
         this.k = k;
         f = new ArrayList<>();
         for (Kategorie ka : k) {
@@ -88,6 +86,22 @@ public class Quiz {
 
     public List<Frage> getF() {
         return f;
+    }
+
+    public long getQuizStarted() {
+        return quizStarted;
+    }
+
+    public void setQuizStarted(long quizStarted) {
+        this.quizStarted = quizStarted;
+    }
+
+    public long getQuizEnded() {
+        return quizEnded;
+    }
+
+    public void setQuizEnded(long quizEnded) {
+        this.quizEnded = quizEnded;
     }
 
 }

@@ -17,8 +17,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
-import javafx.print.Collation;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
@@ -43,8 +41,8 @@ public class QuizController implements Serializable {
     private Quiz q;
     private Frage current;
     private int questionsDone = 0;
-    private Date start;
     private String user;
+    private boolean fiftyUsed;
 
     public void addKategorie() {
         if (!picked.contains(dropdown)) {
@@ -60,21 +58,27 @@ public class QuizController implements Serializable {
 
     public String start() {
         if (!picked.isEmpty()) {
-            q = new Quiz((ArrayList<Kategorie>) picked);
-            getFrage();
-            q.startCount();
-            start = new Date();
-            return "prepare.xhtml";
-        } else {
-            return "chooseKategory.xhtml";
+            List<Frage> f = new ArrayList<>();
+            for (Kategorie k : picked) {
+                f.addAll(k.getFrageList());
+            }
+            if (!f.isEmpty()) {
+
+                q = new Quiz((ArrayList<Kategorie>) picked);
+                index = 0;
+                getFrage();
+                q.startCount();
+                questionsDone = 0;
+                return "prepare.xhtml";
+            }
         }
+        return "chooseKategory.xhtml";
     }
 
     public String next() {
         index++;
         getFrage();
         antworten = null;
-        start = new Date();
         return "question.xhtml";
     }
 
@@ -102,7 +106,7 @@ public class QuizController implements Serializable {
 
     public String antworten(Antwort a) {
 
-        if (a != null && a == current.getRichtigeA() && new Date().getTime() - start.getTime() <= 30000) {
+        if (a != null && a.equals(current.getRichtigeA())) {
             current.setRichtig(current.getRichtig() + 1);
 
             ff.edit(current);
@@ -111,9 +115,11 @@ public class QuizController implements Serializable {
             questionsDone++;
 
             if (questionsDone < q.getF().size()) {
+                antworten = null;
                 return next();
             } else {
                 q.endCount();
+                antworten = null;
                 return "finished.xhtml";
             }
 
@@ -123,6 +129,7 @@ public class QuizController implements Serializable {
             ff.edit(current);
 
             q.setScore(0);
+            antworten = null;
 
             return "done.xhtml";
         }
@@ -133,13 +140,19 @@ public class QuizController implements Serializable {
         createHighscore();
         picked = new ArrayList<>();
         q = null;
-        start = null;
-        index = 0;
+        fiftyUsed = false;
 
-        return "index.xhtml";
+        return "highscores.xhtml";
+    }
+
+    public String finishEarly() {
+        q.endCount();
+        return "finished.xhtml";
     }
 
     public void createHighscore() {
+
+        q.setDuration(q.getDuration() - 10);
 
         Durchlauf d = new Durchlauf();
 
@@ -157,6 +170,21 @@ public class QuizController implements Serializable {
 
         df.remove(d);
 
+    }
+
+    public int getPercentage() {
+        if (current.getRichtig() + current.getFalsch() == 0) {
+            return 0;
+        } else {
+            return (current.getRichtig() * 100 / (current.getRichtig() + current.getFalsch()));
+        }
+    }
+
+    public String fifty() {
+        fiftyUsed = true;
+        antworten.remove(current.getFalscheA1());
+        antworten.remove(current.getFalscheA3());
+        return "question.xhtml";
     }
 
     public String getPicked() {
@@ -197,6 +225,22 @@ public class QuizController implements Serializable {
 
     public void setUser(String user) {
         this.user = user;
+    }
+
+    public boolean isFiftyUsed() {
+        return fiftyUsed;
+    }
+
+    public void setFiftyUsed(boolean fiftyUsed) {
+        this.fiftyUsed = fiftyUsed;
+    }
+
+    public Quiz getQ() {
+        return q;
+    }
+
+    public void setQ(Quiz q) {
+        this.q = q;
     }
 
 }

@@ -71,7 +71,7 @@
                                     <f:facet name="header">
                                         <h:outputText value="Bearbeiten" />
                                     </f:facet>
-                                    <h:commandLink action="#{kategorieController.destroy}" value="Löschen"/>
+                                    <h:commandLink action="#{quizController.destroy(item)}" value="Löschen"/>
                                 </h:column>
                             </c:if>
                         </h:dataTable>
@@ -132,7 +132,7 @@
                                     <f:facet name="header">
                                         <h:outputText value="Bearbeiten" />
                                     </f:facet>
-                                    <h:commandLink action="#{kategorieController.destroy}" value="Löschen"/>
+                                    <h:commandLink action="#{quizController.destroy(item)}" value="Löschen"/>
                                 </h:column>
                             </c:if>
                     </h:dataTable>

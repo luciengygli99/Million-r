@@ -9,7 +9,7 @@
     <ui:composition template="/WEB-INF/templates/layout.xhtml">
 
         <ui:define name="content">
-            <p>Sie haben noch <span id="countdowntimer">30</span> Sekunden Zeit.</p>
+            <p>Aktuelle Punktzahl #{quizController.q.score}</p>
             <p>Frage:</p>
             <h:outputText value="#{quizController.current.frage}"/>
 
@@ -28,17 +28,18 @@
                 </h:form>    
 
             </div>
-            <script type="text/javascript">
-                var timeleft = 30;
-                var timer = setInterval(function () {
-                    timeleft--;
-                    document.getElementById("countdowntimer").textContent = timeleft;
-                    if (timeleft &lt;= 0) {
-                        document.getElementById("btn_null").click();
-                    }
-                }, 1000);
-            </script>
-
+            <br />
+            <br />
+            <h:outputText value ="Diese Frage wurde #{quizController.getPercentage()}% richtig beantwortet." />
+            <br />
+            <br />
+            <h:form rendered="#{!quizController.fiftyUsed}">
+                <h:commandButton action="#{quizController.fifty()}" value="50:50 Joker" class="btn-primary btn-lg btn button" />
+                <br />
+            </h:form>
+            <h:form>
+                <h:commandButton action="#{quizController.finishEarly()}" value="Gewinn realisieren" class="btn-primary btn-lg btn button" />
+            </h:form>
         </ui:define>
     </ui:composition>   
 </html>

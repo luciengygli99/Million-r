@@ -7,7 +7,7 @@
     <class>ch.bbbaden.luciengygli_lb_m151_v232.entity.Frage</class>
     <class>ch.bbbaden.luciengygli_lb_m151_v232.entity.Kategorie</class>
     <class>ch.bbbaden.luciengygli_lb_m151_v232.entity.User</class>
-    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
     </properties>
   </persistence-unit>

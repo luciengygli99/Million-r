@@ -28,6 +28,7 @@ and open the template in the editor.
 
 .contents .button {
     width: 25%;
+    margin: 10px;
 }
 
 .footer {
